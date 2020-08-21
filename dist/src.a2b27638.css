@@ -1,0 +1,206 @@
+.center, .navigation .nav_link a, .addConstat .options .numbers .numberChoiceBtn, .addConstat button[type="submit"], .editable_constats .editable_constat .numberRow .numberBtn, .editable_constats .editable_constat .deleteBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.center-v, .watchable_constats .watchable_constat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.center-h, .addConstat .options .numbers .rangeSelector, .editable_constats .editable_constat .numberRow .rangeSelector {
+  display: flex;
+  align-items: center; }
+
+.row {
+  display: flex;
+  flex-direction: row; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  transition: all .3s; }
+
+a, button {
+  all: unset;
+  color: inherit;
+  cursor: pointer; }
+
+#portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: none; }
+  #portal .upSmallPopup {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform-origin: center;
+    transform: translateX(-50%);
+    padding: .3rem .5rem;
+    border-radius: .25rem;
+    color: #fefefe;
+    background-color: rgba(40, 185, 40, 0.8); }
+    #portal .upSmallPopup.warning {
+      background-color: rgba(255, 174, 0, 0.8); }
+    #portal .upSmallPopup.danger {
+      background-color: rgba(214, 32, 32, 0.8); }
+
+.navigation {
+  background-color: #a308b1;
+  color: #fefefe;
+  height: 10vh;
+  display: flex; }
+  .navigation .nav_link {
+    height: 100%;
+    cursor: pointer;
+    flex: 1; }
+    .navigation .nav_link:hover {
+      background-color: #8d0799; }
+    .navigation .nav_link a {
+      flex-direction: row;
+      width: 100%;
+      height: 100%; }
+      .navigation .nav_link a > svg {
+        margin-left: .5rem; }
+
+.addConstat {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  width: 40%; }
+  .addConstat label {
+    margin-bottom: 1.5rem; }
+  .addConstat .options {
+    width: 100%; }
+    .addConstat .options .title, .addConstat .options .numberOption {
+      margin-bottom: 0.5rem; }
+    .addConstat .options input[type="text"] {
+      width: 100%;
+      padding: .5rem .2rem; }
+    .addConstat .options .numbers {
+      position: relative; }
+      .addConstat .options .numbers input[type="text"] {
+        flex: 1;
+        height: 100%; }
+      .addConstat .options .numbers .numberChoiceBtn {
+        background-color: #cbcbcb;
+        margin-left: .1rem;
+        padding: .5rem;
+        height: 100%;
+        border-radius: .1rem;
+        border: 0.8px solid #818181;
+        width: 2rem; }
+      .addConstat .options .numbers .rangeSelector {
+        position: absolute;
+        left: calc(100% + 1rem);
+        padding: .5rem;
+        background-color: #cbcbcb;
+        border-radius: .25rem; }
+  .addConstat button[type="submit"] {
+    margin-top: .8rem;
+    margin-bottom: 5rem;
+    background-color: #a308b1;
+    color: #fefefe;
+    padding: .5rem;
+    font-size: 1rem;
+    border-radius: 50%;
+    width: fit-content;
+    box-shadow: 2px 2px 20px rgba(163, 8, 177, 0.7); }
+
+@media (max-width: 950px) {
+  .addConstat {
+    width: 60%; } }
+
+@media (max-width: 700px) {
+  .addConstat {
+    width: 80%; } }
+
+@media (max-width: 550px) {
+  .addConstat {
+    width: 100%;
+    padding: 0 1rem; } }
+
+.editable_constats {
+  width: 60%; }
+  .editable_constats .editable_constat {
+    width: 100%;
+    margin-bottom: 2rem; }
+    .editable_constats .editable_constat .title {
+      width: 100%; }
+    .editable_constats .editable_constat .numberRow {
+      position: relative;
+      display: flex;
+      margin: .2rem 0; }
+      .editable_constats .editable_constat .numberRow input[type="text"] {
+        flex: 1; }
+      .editable_constats .editable_constat .numberRow .numberBtn {
+        width: 3rem;
+        margin-left: 0.1rem;
+        background-color: #cbcbcb; }
+      .editable_constats .editable_constat .numberRow .rangeSelector {
+        position: absolute;
+        left: calc(100% + 1rem);
+        background-color: #cbcbcb;
+        padding: .1rem .5rem; }
+    .editable_constats .editable_constat .updateBtn {
+      width: 100%;
+      background-color: #a308b1;
+      color: #fefefe;
+      text-align: center;
+      padding: .25rem 0;
+      margin-top: .3rem; }
+    .editable_constats .editable_constat .deleteBtn {
+      min-width: 3rem;
+      padding: .25rem 0;
+      margin-top: 0.3rem;
+      margin-left: 0.1rem;
+      background-color: #d62020;
+      color: #fefefe; }
+
+@media (max-width: 700px) {
+  .editable_constats {
+    width: 80%; } }
+
+@media (max-width: 550px) {
+  .editable_constats {
+    width: 100%;
+    padding: 0 1rem; } }
+
+.watchable_constats {
+  width: 80%;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem; }
+  .watchable_constats .noConstat {
+    font-style: italic;
+    font-size: .9rem; }
+  .watchable_constats .watchable_constat {
+    padding: 2rem 0rem;
+    box-shadow: 0 0 10px #818181; }
+    .watchable_constats .watchable_constat .pie_container {
+      width: 200px;
+      height: 200px; }
+    .watchable_constats .watchable_constat .constat_title {
+      margin-top: 2rem;
+      padding: 0 1rem;
+      text-align: center; }
+
+@media (max-width: 700px) {
+  .watchable_constats {
+    grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 550px) {
+  .watchable_constats {
+    grid-template-columns: 1fr; } }
+
+
+/*# sourceMappingURL=/src.a2b27638.css.map */

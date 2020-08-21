@@ -1,0 +1,49 @@
+@import "./styles/config";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $ff;
+  transition: all .3s;
+}
+
+a, button {
+  all: unset;
+  color: inherit;
+  cursor: pointer;
+}
+
+#portal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: none;
+
+  .upSmallPopup{
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform-origin: center;
+    transform: translateX(-50%);
+    padding: .3rem .5rem;
+    border-radius: .25rem;
+    color: $white;
+    background-color: rgba($validColor, .8);
+    &.warning{
+      background-color: rgba($warningColor, .8);
+    }
+    &.danger{
+      background-color: rgba($dangerColor, .8);
+    }
+  }
+}
+
+
+@import "./styles/navigation";
+@import "./styles/addConstat";
+@import "./styles/editableConstats";
+@import "./styles/watchableConstats";

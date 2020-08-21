@@ -1,0 +1,85 @@
+.addConstat{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  width: 40%;
+
+
+  label{
+    margin-bottom: 1.5rem;
+  }
+
+  .options{
+    width: 100%;
+    
+    .title, .numberOption{
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"]{
+      width: 100%;
+      padding: .5rem .2rem;
+    }
+
+    .numbers{
+      position: relative;
+
+      input[type="text"]{
+        flex: 1;
+        height: 100%;
+      }
+
+      .numberChoiceBtn{
+        @extend .center;
+        background-color: darken($white, 20%);
+        margin-left: .1rem;
+        padding: .5rem;
+        height: 100%;
+        border-radius: .1rem;
+        border: .8px solid lighten($black, 50%);
+        width: 2rem;
+      }
+
+      .rangeSelector{
+        @extend .center-h;
+        position: absolute;
+        left: calc(100% + 1rem);
+        padding: .5rem;
+        background-color: darken($white, 20%);
+        border-radius: .25rem;
+      }
+    }
+  }
+
+  button[type="submit"]{
+    @extend .center;
+    margin-top: .8rem;
+    margin-bottom: 5rem;
+    background-color: $primaryColor;
+    color: $white;
+    padding: .5rem;
+    font-size: 1rem;
+    border-radius: 50%;
+    width: fit-content;
+    box-shadow: 2px 2px 20px rgba($primaryColor, .7);
+  }
+}
+
+@media (max-width: $bp_L){
+  .addConstat{
+    width: 60%;
+  }
+}
+
+@media (max-width: $bp_M){
+  .addConstat{
+    width: 80%;
+  }
+}
+
+@media (max-width: $bp_S){
+  .addConstat{
+    width: 100%;
+    padding: 0 1rem;
+  }
+}

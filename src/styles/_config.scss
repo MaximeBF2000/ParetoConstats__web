@@ -1,0 +1,39 @@
+// Vars
+
+$ff: "Montserrat", sans-serif;
+$white: #fefefe;
+$black: #010101;
+$primaryColor: #a308b1;
+$dangerColor: #d62020;
+$warningColor: #ffae00;
+$validColor: #28b928;
+$bp_L: 950px;
+$bp_M: 700px;
+$bp_S: 550px;
+
+
+// Classes
+
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-v{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-h{
+  display: flex;
+  align-items: center;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}

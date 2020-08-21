@@ -1,0 +1,4 @@
+export default {
+  ADD_CONSTAT: "ADD_CONSTAT",
+  UPDATE_CONSTATS: "UPDATE_CONSTATS"
+}

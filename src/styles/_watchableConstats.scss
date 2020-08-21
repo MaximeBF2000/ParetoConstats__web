@@ -1,0 +1,41 @@
+.watchable_constats{
+  width: 80%;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+
+  .noConstat{
+    font-style: italic;
+    font-size: .9rem;
+  }
+
+  .watchable_constat{
+    @extend .center-v;
+    padding: 2rem 0rem;
+    box-shadow: 0 0 10px lighten($black, 50%);
+
+    .pie_container{
+      width: 200px;
+      height: 200px;
+    }
+
+    .constat_title{
+      margin-top: 2rem;
+      padding: 0 1rem;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: $bp_M){
+  .watchable_constats{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: $bp_S){
+  .watchable_constats{
+    grid-template-columns: 1fr;
+  }
+}
