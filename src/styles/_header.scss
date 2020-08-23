@@ -1,3 +1,21 @@
+header{
+  background-color: $primaryColor;
+  color: $white;
+  cursor: pointer;
+
+  h1{
+    text-align: center;
+    padding: .2rem 0;
+  }
+
+  p{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: .9rem;
+  }
+}
+
 .navigation{
   background-color: $primaryColor;
   color: $white;
@@ -23,6 +41,14 @@
       &>svg{
         margin-left: .5rem;
       }
+    }
+  }
+}
+
+@media (max-width: $bp_S){
+  header{
+    p{
+      width: 100%;
     }
   }
 }

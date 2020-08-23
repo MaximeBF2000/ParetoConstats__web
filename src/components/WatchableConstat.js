@@ -6,6 +6,9 @@ export default function WatchableConstat({ constat }) {
 
   const RandomColor = () => "#" + (('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6))
 
+  const rndColorA = RandomColor()
+  const rndColorB = RandomColor()
+
   return (
     <div className="watchable_constat">
       <div className="pie_container">
@@ -14,7 +17,7 @@ export default function WatchableConstat({ constat }) {
             labels: [inputName, outputName],
             datasets: [{
               data: [inputNumber, outputNumber],
-              backgroundColor: [RandomColor(), RandomColor()]
+              backgroundColor: [rndColorA, rndColorB]
             }]
           }}
           options={{

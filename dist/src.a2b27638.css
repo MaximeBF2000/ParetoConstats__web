@@ -40,7 +40,7 @@ a, button {
   pointer-events: none; }
   #portal .upSmallPopup {
     position: absolute;
-    top: 5rem;
+    top: 7rem;
     left: 50%;
     transform-origin: center;
     transform: translateX(-50%);
@@ -52,6 +52,19 @@ a, button {
       background-color: rgba(255, 174, 0, 0.8); }
     #portal .upSmallPopup.danger {
       background-color: rgba(214, 32, 32, 0.8); }
+
+header {
+  background-color: #a308b1;
+  color: #fefefe;
+  cursor: pointer; }
+  header h1 {
+    text-align: center;
+    padding: .2rem 0; }
+  header p {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: .9rem; }
 
 .navigation {
   background-color: #a308b1;
@@ -70,6 +83,10 @@ a, button {
       height: 100%; }
       .navigation .nav_link a > svg {
         margin-left: .5rem; }
+
+@media (max-width: 550px) {
+  header p {
+    width: 100%; } }
 
 .addConstat {
   display: flex;

@@ -4,14 +4,15 @@ import "./App.scss"
 
 import EditPage from "./pages/EditPage"
 import WatchPage from "./pages/WatchPage"
+import Header from './components/Header'
 import Navigation from "./components/Navigation"
 
 export default function App() {
-  // TODO : Responsive design
   // TODO : add color selection for pie charts in add constat & edit constats
   // TODO : add localStorage OR BETTER firebase database
   return (
     <BrowserRouter>
+      <Header />
       <Navigation />
       <Switch>
         {/* Inverser les 2 routes pour la production */}
