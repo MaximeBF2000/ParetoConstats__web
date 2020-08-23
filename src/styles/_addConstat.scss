@@ -81,5 +81,15 @@
   .addConstat{
     width: 100%;
     padding: 0 1rem;
+
+    .options{
+      .numbers{
+        .rangeSelector{
+          left: unset;
+          right: 0;
+          transform: translateY(6rem);
+        }
+      }
+    }
   }
 }

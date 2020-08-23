@@ -144,7 +144,11 @@ header {
 @media (max-width: 550px) {
   .addConstat {
     width: 100%;
-    padding: 0 1rem; } }
+    padding: 0 1rem; }
+    .addConstat .options .numbers .rangeSelector {
+      left: unset;
+      right: 0;
+      transform: translateY(6rem); } }
 
 .editable_constats {
   width: 60%; }
@@ -190,7 +194,11 @@ header {
 @media (max-width: 550px) {
   .editable_constats {
     width: 100%;
-    padding: 0 1rem; } }
+    padding: 0 1rem; }
+    .editable_constats .editable_constat .numberRow .rangeSelector {
+      left: unset;
+      right: 0;
+      transform: translateY(6rem); } }
 
 .watchable_constats {
   width: 80%;
