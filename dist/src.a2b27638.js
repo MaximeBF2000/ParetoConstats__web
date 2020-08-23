@@ -80590,7 +80590,7 @@ function Header() {
     onClick: switchDescription
   }, "Pareto's Constats"), /*#__PURE__*/_react.default.createElement("p", {
     style: showDescription ? descriptionStyle.visible : descriptionStyle.invisible
-  }, "Pareto's Law came from the constat that 80% of the outcome are coming from 20% of the input. It is the most know law of productivity. You can make constats of activities in your life and compare the time spent, the money spent, the emotionnal involvment... Find what's bringing you the most postitive value with the least take away."));
+  }, "Pareto's Law came from the constat that 80% of the outcome are coming from 20% of the input. It is the most well known law of productivity. You can make constats of activities in your life and compare the time spent, the money spent, the emotionnal involvment... Find what's bringing you the most postitive value with the least take away."));
 }
 },{"react":"node_modules/react/index.js"}],"node_modules/@material-ui/icons/Edit.js":[function(require,module,exports) {
 "use strict";
@@ -80787,7 +80787,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52613" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52802" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
