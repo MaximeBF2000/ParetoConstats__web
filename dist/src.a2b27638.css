@@ -86,7 +86,8 @@ header {
 
 @media (max-width: 550px) {
   header p {
-    width: 100%; } }
+    width: 100%;
+    padding: 0 1rem; } }
 
 .addConstat {
   display: flex;
