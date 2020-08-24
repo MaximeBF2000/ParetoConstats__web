@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { AppContext } from "../index"
-import UpSmallPopup from "./UpSmallPopup"
 import actions from "../contexts/actionTypes"
+import { firestore, timestamp } from "../helpers/firebase"
+
+import UpSmallPopup from "./UpSmallPopup"
 import AddIcon from '@material-ui/icons/Add'
-import { v4 as uuid } from "uuid"
 
 export default function AddConstat() {
   const [title, setTitle] = useState("")
@@ -25,13 +26,20 @@ export default function AddConstat() {
 
   const addConstat = () => {
     if(title && inputName && outputName) {
-      const formState = { id: uuid(), title, inputName, inputNumber, outputName, outputNumber }
+      // Update context data 👇
+      const collectionRef = firestore.collection("constats")
+      const formState = { title, inputName, inputNumber, outputName, outputNumber }
       dispatch({ type: actions.ADD_CONSTAT, payload: formState })
+      // Reset form 👇
       setTitle("")
       setInputName("")
       setOutputName("")
       setInputNumber(80)
       setOutputNumber(20)
+      // Add to Firestore 👇
+      const createdAt = timestamp()
+      collectionRef.add({...formState, createdAt})
+
       popupSwitch(setShowSuccessPopup)
     } else {
       popupSwitch(setShowWarningPopup)

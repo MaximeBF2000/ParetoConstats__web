@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
-import { AppContext } from "../index"
+import useFirestore from "../helpers/useFirestore"
 
 import WatchableConstat from "./WatchableConstat"
 
 export default function WatchableConstats() {
-  const { constats } = useContext(AppContext)
+  const { docs } = useFirestore("constats")
 
   return (
     <div className="watchable_constats">
       {
-        constats.map((constat, i) => (
-          <WatchableConstat key={i} constat={constat} />
+        docs.map((doc, i) => (
+          <WatchableConstat key={i} doc={doc} />
         ))
       }
     </div>

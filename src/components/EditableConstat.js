@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { AppContext } from "../index"
 import actions from "../contexts/actionTypes"
+import { firestore } from "../helpers/firebase"
 import UpSmallPopup from "./UpSmallPopup"
 import DeleteIcon from '@material-ui/icons/Delete'
 
-export default function EditableConstat({ constat }) {
-  const { id, title, inputName, inputNumber, outputName, outputNumber } = constat
+export default function EditableConstat({ doc }) {
+  const id = doc.id
+  const { title, inputName, inputNumber, outputName, outputNumber } = doc.data()
   const { constats, dispatch } = useContext(AppContext)
 
   const [showUpdatePopup, setShowUpdatePopup] = useState(false)
@@ -46,6 +48,7 @@ export default function EditableConstat({ constat }) {
 
   const deleteConstat = () => {
     const without_constat = constats.filter(constat => constat.id !== id)
+    firestore.collection("constats").doc(id).delete()
     dispatch({ type: actions.UPDATE_CONSTATS, payload: without_constat })
     popupSwitch(setShowDeletePopup)
   }
