@@ -26,20 +26,16 @@ export default function AddConstat() {
 
   const addConstat = () => {
     if(title && inputName && outputName) {
-      // Update context data 👇
-      const collectionRef = firestore.collection("constats")
+      // Add to Firestore 👇
       const formState = { title, inputName, inputNumber, outputName, outputNumber }
-      dispatch({ type: actions.ADD_CONSTAT, payload: formState })
+      const createdAt = timestamp()
+      firestore.collection("constats").add({...formState, createdAt})
       // Reset form 👇
       setTitle("")
       setInputName("")
       setOutputName("")
       setInputNumber(80)
       setOutputNumber(20)
-      // Add to Firestore 👇
-      const createdAt = timestamp()
-      collectionRef.add({...formState, createdAt})
-
       popupSwitch(setShowSuccessPopup)
     } else {
       popupSwitch(setShowWarningPopup)

@@ -8,7 +8,6 @@ import DeleteIcon from '@material-ui/icons/Delete'
 export default function EditableConstat({ doc }) {
   const id = doc.id
   const { title, inputName, inputNumber, outputName, outputNumber } = doc.data()
-  const { constats, dispatch } = useContext(AppContext)
 
   const [showUpdatePopup, setShowUpdatePopup] = useState(false)
   const [showUpdateWarning, setShowUpdateWarning] = useState(false)
@@ -36,10 +35,14 @@ export default function EditableConstat({ doc }) {
 
   const updateConstat = () => {
     if(editTitle && inName && outName) {
-      const without_constat = constats.filter(constat => constat.id !== id)
-      const newConstat = { id: constat.id, title: editTitle , inputName: inName, inputNumber: inVal, outputName: outName, outputNumber: outVal }
-      const updatedConstats = [...without_constat, newConstat]
-      dispatch({ type: actions.UPDATE_CONSTATS, payload: updatedConstats })
+      const newConstat = { title: editTitle , inputName: inName, inputNumber: inVal, outputName: outName, outputNumber: outVal }
+      firestore.collection("constats").doc(id).update(newConstat).then(() => {
+        setEditTitle(title)
+        setInName(inputName)
+        setInVal(inputNumber)
+        setOutName(outputName)
+        setOutVal(outputNumber)
+      })
       popupSwitch(setShowUpdatePopup)
     } else {
       popupSwitch(setShowUpdateWarning)
@@ -47,9 +50,7 @@ export default function EditableConstat({ doc }) {
   }
 
   const deleteConstat = () => {
-    const without_constat = constats.filter(constat => constat.id !== id)
     firestore.collection("constats").doc(id).delete()
-    dispatch({ type: actions.UPDATE_CONSTATS, payload: without_constat })
     popupSwitch(setShowDeletePopup)
   }
 

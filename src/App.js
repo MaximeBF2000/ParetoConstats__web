@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation"
 
 export default function App() {
   // TODO : adapt edit function to firestore
+  // TODO : fix performance error
   return (
     <BrowserRouter>
       <Header />

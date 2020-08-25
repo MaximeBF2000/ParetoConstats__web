@@ -77439,9 +77439,7 @@ function AddConstat() {
 
   var addConstat = function addConstat() {
     if (title && inputName && outputName) {
-      // Update context data 👇
-      var collectionRef = _firebase.firestore.collection("constats");
-
+      // Add to Firestore 👇
       var formState = {
         title: title,
         inputName: inputName,
@@ -77449,21 +77447,18 @@ function AddConstat() {
         outputName: outputName,
         outputNumber: outputNumber
       };
-      dispatch({
-        type: _actionTypes.default.ADD_CONSTAT,
-        payload: formState
-      }); // Reset form 👇
+      var createdAt = (0, _firebase.timestamp)();
+
+      _firebase.firestore.collection("constats").add(_objectSpread({}, formState, {
+        createdAt: createdAt
+      })); // Reset form 👇
+
 
       setTitle("");
       setInputName("");
       setOutputName("");
       setInputNumber(80);
-      setOutputNumber(20); // Add to Firestore 👇
-
-      var createdAt = (0, _firebase.timestamp)();
-      collectionRef.add(_objectSpread({}, formState, {
-        createdAt: createdAt
-      }));
+      setOutputNumber(20);
       popupSwitch(setShowSuccessPopup);
     } else {
       popupSwitch(setShowWarningPopup);
@@ -77650,14 +77645,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -77680,10 +77667,6 @@ function EditableConstat(_ref) {
       inputNumber = _doc$data.inputNumber,
       outputName = _doc$data.outputName,
       outputNumber = _doc$data.outputNumber;
-
-  var _useContext = (0, _react.useContext)(_index.AppContext),
-      constats = _useContext.constats,
-      dispatch = _useContext.dispatch;
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -77758,22 +77741,22 @@ function EditableConstat(_ref) {
 
   var updateConstat = function updateConstat() {
     if (editTitle && inName && outName) {
-      var without_constat = constats.filter(function (constat) {
-        return constat.id !== id;
-      });
       var newConstat = {
-        id: constat.id,
         title: editTitle,
         inputName: inName,
         inputNumber: inVal,
         outputName: outName,
         outputNumber: outVal
       };
-      var updatedConstats = [].concat(_toConsumableArray(without_constat), [newConstat]);
-      dispatch({
-        type: _actionTypes.default.UPDATE_CONSTATS,
-        payload: updatedConstats
+
+      _firebase.firestore.collection("constats").doc(id).update(newConstat).then(function () {
+        setEditTitle(title);
+        setInName(inputName);
+        setInVal(inputNumber);
+        setOutName(outputName);
+        setOutVal(outputNumber);
       });
+
       popupSwitch(setShowUpdatePopup);
     } else {
       popupSwitch(setShowUpdateWarning);
@@ -77781,16 +77764,8 @@ function EditableConstat(_ref) {
   };
 
   var deleteConstat = function deleteConstat() {
-    var without_constat = constats.filter(function (constat) {
-      return constat.id !== id;
-    });
-
     _firebase.firestore.collection("constats").doc(id).delete();
 
-    dispatch({
-      type: _actionTypes.default.UPDATE_CONSTATS,
-      payload: without_constat
-    });
     popupSwitch(setShowDeletePopup);
   };
 
@@ -104401,6 +104376,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function App() {
   // TODO : adapt edit function to firestore
+  // TODO : fix performance error
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Navigation.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/edit"
@@ -104500,7 +104476,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57230" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50786" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
