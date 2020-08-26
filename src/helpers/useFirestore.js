@@ -5,7 +5,7 @@ export default function useFirestore(collectionName){
   const [docs, setDocs] = useState([])
 
   useEffect(() => {
-    firestore.collection(collectionName)
+    const unsubscribe = firestore.collection(collectionName)
       .orderBy("createdAt", "desc")
       .onSnapshot(snap => {
         const documents = []
@@ -14,6 +14,8 @@ export default function useFirestore(collectionName){
         })
         setDocs(documents)
       })
+
+    return () => unsubscribe()
   }, [collectionName])
 
   return { docs }

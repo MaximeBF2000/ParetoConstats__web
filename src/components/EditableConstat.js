@@ -1,6 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { AppContext } from "../index"
-import actions from "../contexts/actionTypes"
+import React, { useState } from 'react'
 import { firestore } from "../helpers/firebase"
 import UpSmallPopup from "./UpSmallPopup"
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -36,13 +34,7 @@ export default function EditableConstat({ doc }) {
   const updateConstat = () => {
     if(editTitle && inName && outName) {
       const newConstat = { title: editTitle , inputName: inName, inputNumber: inVal, outputName: outName, outputNumber: outVal }
-      firestore.collection("constats").doc(id).update(newConstat).then(() => {
-        setEditTitle(title)
-        setInName(inputName)
-        setInVal(inputNumber)
-        setOutName(outputName)
-        setOutVal(outputNumber)
-      })
+      firestore.collection("constats").doc(id).update(newConstat)
       popupSwitch(setShowUpdatePopup)
     } else {
       popupSwitch(setShowUpdateWarning)

@@ -9,8 +9,8 @@ export default function WatchableConstats() {
   return (
     <div className="watchable_constats">
       {
-        docs.map((doc, i) => (
-          <WatchableConstat key={i} doc={doc} />
+        docs.map(doc => (
+          <WatchableConstat key={doc.id} doc={doc} />
         ))
       }
     </div>

@@ -77352,10 +77352,6 @@ exports.default = AddConstat;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _index = require("../index");
-
-var _actionTypes = _interopRequireDefault(require("../contexts/actionTypes"));
-
 var _firebase = require("../helpers/firebase");
 
 var _UpSmallPopup = _interopRequireDefault(require("./UpSmallPopup"));
@@ -77426,9 +77422,6 @@ function AddConstat() {
       _useState16 = _slicedToArray(_useState15, 2),
       showWarningPopup = _useState16[0],
       setShowWarningPopup = _useState16[1];
-
-  var _useContext = (0, _react.useContext)(_index.AppContext),
-      dispatch = _useContext.dispatch;
 
   var popupSwitch = function popupSwitch(setValue) {
     setValue(true);
@@ -77557,7 +77550,7 @@ function AddConstat() {
     onClick: addConstat
   }, " ", /*#__PURE__*/_react.default.createElement(_Add.default, null), " "))));
 }
-},{"react":"node_modules/react/index.js","../index":"src/index.js","../contexts/actionTypes":"src/contexts/actionTypes.js","../helpers/firebase":"src/helpers/firebase.js","./UpSmallPopup":"src/components/UpSmallPopup.js","@material-ui/icons/Add":"node_modules/@material-ui/icons/Add.js"}],"src/helpers/useFirestore.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../helpers/firebase":"src/helpers/firebase.js","./UpSmallPopup":"src/components/UpSmallPopup.js","@material-ui/icons/Add":"node_modules/@material-ui/icons/Add.js"}],"src/helpers/useFirestore.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77588,13 +77581,17 @@ function useFirestore(collectionName) {
       setDocs = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    _firebase.firestore.collection(collectionName).orderBy("createdAt", "desc").onSnapshot(function (snap) {
+    var unsubscribe = _firebase.firestore.collection(collectionName).orderBy("createdAt", "desc").onSnapshot(function (snap) {
       var documents = [];
       snap.docs.forEach(function (doc) {
         documents.push(doc);
       });
       setDocs(documents);
     });
+
+    return function () {
+      return unsubscribe();
+    };
   }, [collectionName]);
   return {
     docs: docs
@@ -77628,10 +77625,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = EditableConstat;
 
 var _react = _interopRequireWildcard(require("react"));
-
-var _index = require("../index");
-
-var _actionTypes = _interopRequireDefault(require("../contexts/actionTypes"));
 
 var _firebase = require("../helpers/firebase");
 
@@ -77749,13 +77742,7 @@ function EditableConstat(_ref) {
         outputNumber: outVal
       };
 
-      _firebase.firestore.collection("constats").doc(id).update(newConstat).then(function () {
-        setEditTitle(title);
-        setInName(inputName);
-        setInVal(inputNumber);
-        setOutName(outputName);
-        setOutVal(outputNumber);
-      });
+      _firebase.firestore.collection("constats").doc(id).update(newConstat);
 
       popupSwitch(setShowUpdatePopup);
     } else {
@@ -77839,7 +77826,7 @@ function EditableConstat(_ref) {
     onClick: deleteConstat
   }, " ", /*#__PURE__*/_react.default.createElement(_Delete.default, null), " "))));
 }
-},{"react":"node_modules/react/index.js","../index":"src/index.js","../contexts/actionTypes":"src/contexts/actionTypes.js","../helpers/firebase":"src/helpers/firebase.js","./UpSmallPopup":"src/components/UpSmallPopup.js","@material-ui/icons/Delete":"node_modules/@material-ui/icons/Delete.js"}],"src/components/EditableConstats.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../helpers/firebase":"src/helpers/firebase.js","./UpSmallPopup":"src/components/UpSmallPopup.js","@material-ui/icons/Delete":"node_modules/@material-ui/icons/Delete.js"}],"src/components/EditableConstats.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77861,9 +77848,9 @@ function EditableConstats() {
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "editable_constats"
-  }, docs.map(function (doc, i) {
+  }, docs.map(function (doc) {
     return /*#__PURE__*/_react.default.createElement(_EditableConstat.default, {
-      key: i,
+      key: doc.id,
       doc: doc
     });
   }));
@@ -104197,9 +104184,9 @@ function WatchableConstats() {
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "watchable_constats"
-  }, docs.map(function (doc, i) {
+  }, docs.map(function (doc) {
     return /*#__PURE__*/_react.default.createElement(_WatchableConstat.default, {
-      key: i,
+      key: doc.id,
       doc: doc
     });
   }));
@@ -104375,7 +104362,6 @@ var _Navigation = _interopRequireDefault(require("./components/Navigation"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  // TODO : adapt edit function to firestore
   // TODO : fix performance error
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Navigation.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
@@ -104476,7 +104462,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50223" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50577" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

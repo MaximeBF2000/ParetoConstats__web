@@ -9,8 +9,8 @@ export default function EditableConstats() {
   return (
     <div className="editable_constats">
       {
-        docs.map((doc, i) => (
-          <EditableConstat key={i} doc={doc} />
+        docs.map(doc => (
+          <EditableConstat key={doc.id} doc={doc} />
         ))
       }
     </div>

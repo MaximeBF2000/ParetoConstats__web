@@ -1,6 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { AppContext } from "../index"
-import actions from "../contexts/actionTypes"
+import React, { useState } from 'react'
 import { firestore, timestamp } from "../helpers/firebase"
 
 import UpSmallPopup from "./UpSmallPopup"
@@ -16,8 +14,6 @@ export default function AddConstat() {
   const [showRange, setShowRange] = useState(false)
   const [showSuccessPopup, setShowSuccessPopup] = useState(false)
   const [showWarningPopup, setShowWarningPopup] = useState(false)
-
-  const { dispatch } = useContext(AppContext)
 
   const popupSwitch = setValue => {
     setValue(true)
