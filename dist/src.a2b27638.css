@@ -55,11 +55,11 @@ a, button {
 
 header {
   background-color: #a308b1;
-  color: #fefefe;
-  cursor: pointer; }
+  color: #fefefe; }
   header h1 {
     text-align: center;
-    padding: .2rem 0; }
+    padding: .2rem 0;
+    cursor: pointer; }
   header p {
     width: 70%;
     margin: 0 auto;
